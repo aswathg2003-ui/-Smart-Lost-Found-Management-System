@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Help Requests</title>
+</head>
+<body>
+
+<h2>Community Help Requests</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Status</th>
+    </tr>
+
+    {% for req in requests %}
+    <tr>
+        <td>{{ req.title }}</td>
+        <td>{{ req.category }}</td>
+        <td>{{ req.description }}</td>
+        <td>{{ req.status }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

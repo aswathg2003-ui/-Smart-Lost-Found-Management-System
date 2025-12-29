@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Help Platform</title>
+</head>
+<body>
+
+<h2>Post a Help Request</h2>
+
+<form id="helpForm">
+    <label>Title:</label><br>
+    <input type="text" id="title" required><br><br>
+
+    <label>Category:</label><br>
+    <select id="category">
+        <option>Education</option>
+        <option>Tech</option>
+        <option>Emergency</option>
+        <option>General Help</option>
+    </select><br><br>
+
+    <label>Description:</label><br>
+    <textarea id="description" required></textarea><br><br>
+
+    <button type="submit">Post Request</button>
+</form>
+
+<script>
+document.getElementById("helpForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    fetch("/help", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            title: document.getElementById("title").value,
+            category: document.getElementById("category").value,
+            description: document.getElementById("description").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        document.getElementById("helpForm").reset();
+    });
+});
+</script>
+
+</body>
+</html>
